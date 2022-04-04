@@ -65,7 +65,8 @@
             else{
                 $activities= []; 
             } 
-            
+
+                        
             //Obtener lista de Categorias
             $curl = curl_init();
 
@@ -154,7 +155,7 @@
 
         $hotelsSort = PHPArrayObjectSorter( $hotels,'city');
 
-
+       
     
          //Funtion para ordenar array
         function PHPArrayObjectSorter($array,$sortBy,$direction='asc')
@@ -266,12 +267,35 @@
                 <div class="col col-md-4 pt-3">
                     <div class="accordion" id="accordionPanelsStayOpenExample">
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                            <h2 class="accordion-header" id="panelsStayOpen-heading1">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse1" aria-expanded="true" aria-controls="panelsStayOpen-collapse1">
+                                Availability
+                            </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapse1" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-heading1">
+                                <div class="accordion-body d-flex justify-content-center">
+                                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                        <button type="button" class="btn btn-outline-primary" id="btnToday">Today</button>
+                                        <button type="button" class="btn btn-outline-primary" id="btnTomorrow">Tomorrow</button>
+                                        <button type="button" class="btn btn-outline-primary" id="btnDate">Date</button>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center p-2 d-none" id="rangeDate">
+                                   <div class="input-group input-daterange w-75">
+                                        <input type="text" class="form-control inputFrom" value="">
+                                        <div class="input-group-addon p-2 btn-primary">to</div>
+                                        <input type="text" class="form-control inputTo" value="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="panelsStayOpen-heading2">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse2" aria-expanded="true" aria-controls="panelsStayOpen-collapse2">
                                Categories
                             </button>
                             </h2>
-                            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                            <div id="panelsStayOpen-collapse2" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-heading2">
                             <div class="accordion-body">
                                 <?php foreach($categories as $key=>$category):?>
                                     <div class="form-check">
@@ -285,24 +309,24 @@
                             </div>
                         </div>
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                            <h2 class="accordion-header" id="panelsStayOpen-heading3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse3" aria-expanded="false" aria-controls="panelsStayOpen-collapse3">
                                 Accordion Item #2
                             </button>
                             </h2>
-                            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                            <div id="panelsStayOpen-collapse3" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading3">
                             <div class="accordion-body">
                                 <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
                             </div>
                             </div>
                         </div>
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                            <h2 class="accordion-header" id="panelsStayOpen-heading4">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse4" aria-expanded="false" aria-controls="panelsStayOpen-collapse4">
                                 Accordion Item #3
                             </button>
                             </h2>
-                            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                            <div id="panelsStayOpen-collapse4" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading4">
                             <div class="accordion-body">
                                 <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
                             </div>
@@ -314,10 +338,10 @@
                 <div class="col pt-3">
                     <div class="row" id="cardActivity">  
                         <?php foreach ($activities as $key=>$activity){?>
-                            <div class="col col-md-6 col-lg-4">
-                                <div class="card shadow mb-3">
+                            <div class="d-flex col-12 col-md-6 col-lg-4">
+                                <div class="align-self-stretch card shadow mb-3">
                                     <img src="<?php echo $activities[$key]->content->media->images[0]->urls[4]->resource?>" class="card-img-top" alt="...">
-                                    <div class="card-body"  style="height: 10rem;">
+                                    <div class="card-body">
                                         <h5 class="card-title"><?php echo $activities[$key]->name; ?></h5>
                                         <p class="card-text text-muted">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -329,13 +353,30 @@
                                                     echo $activities[$key]->content->location->startingPoints[0]->meetingPoint->city.', '.$activities[$key]->content->location->startingPoints[0]->meetingPoint->country->name;
                                                 } 
                                                 else{ 
-                                                    echo "Varios destinos";
+                                                    if($_POST['language'] == 'es'){
+                                                        echo "Varios destinos";
+                                                    }
+                                                    else{
+                                                        echo 'Multiple destinations';
+                                                    }
                                             }?>
                                         </p>
                                         <a href="activityDetails.php?code=<?php echo $activities[$key]->code; ?>&lang=<?php echo $_POST['language'];?>&from=<?php echo $_POST['from'];?>&to=<?php echo $_POST['to'];?>" class="stretched-link"></a>
                                     </div>
-                                    <div class="text-end p-2">
-                                        <h5 class="text-danger fw-bold"><?php echo $activities[$key]->amountsFrom[0]->amount .' '. $activities[$key]->currency; ?></h5>
+                                    <div class="d-flex flex-column-reverse text-end p-2" style="height: 5rem;">
+                                        <?php if($activities[$key]->modalities[0]->freeCancellation ){ 
+                                                if($_POST['language'] == 'es'){
+                                                    echo '<div class="align-self-end text-success">Cancelación gratuita</div>'; 
+                                                }
+                                                else{
+                                                    echo '<div class="align-self-end text-success">Free cancellation</div>'; 
+                                                }
+                                            
+                                            }?>
+                                        <div class="align-self-end">
+                                            <h5 class="text-danger fw-bold"><em><?php echo $activities[$key]->amountsFrom[0]->amount .' '. $activities[$key]->currency; ?></em></h5>
+                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>    

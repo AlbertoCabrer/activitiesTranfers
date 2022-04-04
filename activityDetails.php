@@ -75,11 +75,24 @@ else{
    $images= []; 
 } 
 
-// echo "<PRE>";
-// print_r($images);
-// echo "</PRE>";
-// die();
+$activity = $decoded->activity;
 
+$carouselInner=''; 
+$carouselIndicators='';
+foreach ($images as $key=>$img){
+
+    if($key == 0){
+      $carouselInner .= '<div class="carousel-item active">';
+      $carouselIndicators .= '<button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="'. $key .'" class="active" aria-current="true" aria-label="Slide '. $key + 1 .'"></button>';
+    }
+    else{
+      $carouselInner .= '<div class="carousel-item">';
+      $carouselIndicators .= ' <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="'. $key .'" aria-label="Slide '. $key + 1 .'"></button>';
+    }
+
+    $carouselInner .= '<img src="'. $images[$key]->urls[3]->resource .'" class="d-block w-100 img-fluid" alt="..."></div>';
+
+}
 
 ?>
 
@@ -119,17 +132,10 @@ else{
           <div class="col">
               <div id="carouselExampleControls" class="carousel slide carousel-fad" data-bs-ride="carousel">
                   <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                    <?php echo $carouselIndicators;?>
                   </div>
                   <div class="carousel-inner">
-                      <?php foreach ($images as $key=>$img):?>
-                            <div class="carousel-item <?php if($key == 0): echo 'active'; endif?>">
-                                <img src="<?php echo $images[$key]->urls[3]->resource;?>" class="d-block w-100 img-fluid" alt="...">
-                            </div>
-                      <?php endforeach ?>
+                      <?php echo $carouselInner;?>
                   </div>
                   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -141,6 +147,40 @@ else{
                   </button>
               </div>
           </div>
+        </div>
+        <div class="row">
+          <div class="col pt-2">
+              <nav id="navbar-example2" class="navbar navbar-light px-3 justify-content-center">
+                <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+                <ul class="nav nav-pills">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#scrollspyHeading1">Description</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#scrollspyHeading2">Prices</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#scrollspyHeading3">Details</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#scrollspyHeading4">Cancellations</a>
+                  </li>
+                </ul>
+              </nav>
+              <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example bg-light" tabindex="0">
+                <h4 id="scrollspyHeading1"></h4>
+                <p class="p-2"><?php echo $activity->content->description;?></p>
+                <h4 id="scrollspyHeading2">Prices</h4>
+                <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
+                <h4 id="scrollspyHeading3">Third heading</h4>
+                <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
+                <h4 id="scrollspyHeading4">Fourth heading</h4>
+                <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
+                
+              </div>
+
+          </div>
+
         </div>  
 
         
